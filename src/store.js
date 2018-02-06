@@ -3,6 +3,7 @@ import { routerMiddleware } from 'react-router-redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from 'modules'
+import applyCandidatesEventListeners from 'modules/candidates/candidates.event-listeners'
 
 export const history = createHistory()
 
@@ -31,5 +32,7 @@ const store = createStore(
   initialState,
   composedEnhancers
 )
+
+applyCandidatesEventListeners(store.dispatch, store.getState);
 
 export default store

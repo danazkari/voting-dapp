@@ -4,6 +4,8 @@ contract Voting {
   mapping (bytes32 => uint8) public votes;
   bytes32[] private candidateList;
 
+  event UpdateCandidates();
+
   function getCandidateVotes(bytes32 candidate) public view returns (uint8) {
     assert(doesCandidateExist(candidate));
 
@@ -18,12 +20,14 @@ contract Voting {
     assert(!doesCandidateExist(candidate));
 
     candidateList.push(candidate);
+    UpdateCandidates();
   }
 
   function voteForCandidate(bytes32 candidate) public {
     assert(doesCandidateExist(candidate));
 
     votes[candidate] += 1;
+    UpdateCandidates();
   }
 
   function doesCandidateExist(bytes32 candidate) internal view returns (bool) {

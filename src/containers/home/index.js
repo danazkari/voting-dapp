@@ -30,12 +30,12 @@ class Home extends Component {
     this.props.getCandidates()
   }
 
-  handleVote = (candidate) => {
-    console.log('voting for ', candidate)
+  handleVote = ({ name: candidateName }) => {
+    this.props.vote(candidateName)
   }
 
   handlePostulateCandidate = () => {
-    console.log('Postulating new candidate')
+    this.props.postulateNewCandidate()
   }
 
   render() {
@@ -56,7 +56,9 @@ class Home extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getCandidates: () => getCandidates()
+  getCandidates: () => getCandidates(),
+  postulateNewCandidate: () => postulateNewCandidate(),
+  vote: (candidateName) => vote(candidateName),
 }, dispatch)
 
 const mapStateToProps = state => ({

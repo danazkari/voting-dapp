@@ -25,7 +25,7 @@ const CandidateList = ({ classes, candidates, onVote }) => (
   <div className={classes.root}>
     {candidates
       .sort(({ votes: votesA }, { votes: votesB }) => votesB - votesA)
-      .map(({ name, votes }) => (
+      .map(({ name, votes, percentage }) => (
       <Card key={`candidate-${name.split(' ')[2]}`} className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -34,10 +34,15 @@ const CandidateList = ({ classes, candidates, onVote }) => (
         />
         <CardContent>
           <Typography variant="headline" component="h2">
-            {name}
+            {
+              name
+                .split(' ')
+                .map(section => `${section.charAt(0).toUpperCase()}${section.slice(1)}`)
+                .join(' ')
+            }
           </Typography>
           <Typography variant="subheading" color="textSecondary">
-            Votes 53%
+            Votes {(percentage * 100).toFixed(2).replace('.00', '')}%
           </Typography>
           <Typography component="p">
             Sit maxime facilis temporibus perspiciatis

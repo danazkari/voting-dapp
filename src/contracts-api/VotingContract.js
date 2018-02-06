@@ -17,25 +17,43 @@ export default class VotingContract {
     return instance
   }
 
-  async getVotes() {
+  async updateCandidatesEventListener(callback) {
     const contractInstance = await this.contract.deployed()
-    return contractInstance.votes.call();
+    const updateCandidatesEvent = contractInstance.UpdateCandidates()
+    return updateCandidatesEvent.watch(callback)
   }
 
-  async proposeCandidate(candidateName) {
+  async getVotes() {
+    const contractInstance = await this.contract.deployed()
+    return contractInstance.votes();
+  }
+
+  async proposeCandidate() {
+    // TODO: This could receive a candidate's name as a parameter
+    const getRandomUserURL = 'https://randomuser.me/api/?nat=us'
     const { eth: { accounts: [ account ] } } = this.web3
     const contractInstance = await this.contract.deployed()
-    return contractInstance.postulateCandidate(candidateName, { from: account });
+    const {
+      results: [{
+        name: { first, last },
+        id: { value: id },
+      }]
+    } = await fetch(getRandomUserURL)
+      .then(response => response.json())
+
+    return contractInstance
+      .postulateCandidate(`${first} ${last} ${id}`, { from: account })
   }
 
   async castVote(candidateName) {
+    const { eth: { accounts: [ account ] } } = this.web3
     const contractInstance = await this.contract.deployed()
-    return contractInstance.voteForCandidate.call(candidateName);
+    return contractInstance.voteForCandidate(candidateName, { from: account })
   }
 
   async getAllCandidates() {
     const contractInstance = await this.contract.deployed()
-    const candidateList = (await contractInstance.listCandidates.call())
+    const candidateList = (await contractInstance.listCandidates())
       .map(candidate => toAsciiFromByte32(candidate))
 
     return Promise.all(candidateList.map(
@@ -55,6 +73,4 @@ export default class VotingContract {
       votes: Number(result.toString())
     }
   }
-
-  async vote(candidate) {}
 }
