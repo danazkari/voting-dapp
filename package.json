@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "dotenv": "^2.0.0",
+    "env-cmd": "^7.0.0",
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.32",
     "material-ui-icons": "^1.0.0-beta.17",
@@ -64,9 +65,9 @@
     "truffle-hdwallet-provider": "0.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "start": "env-cmd ./.env node scripts/start.js",
+    "build": "env-cmd ./.env node scripts/build.js",
+    "test": "env-cmd ./.env node scripts/test.js --env=jsdom"
   },
   "jest": {
     "collectCoverageFrom": [

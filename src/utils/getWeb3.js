@@ -1,12 +1,10 @@
 import Web3 from 'web3'
 
-// TODO: Take this from env vars
-const PORT = 7545
+const { REACT_APP_LOCAL_BLOCKCHAIN_PORT: PORT } = process.env
 
 export default () => {
   const { web3 } = window
 
-  // FIXME: Using MetaMask's web3 makes it hard to work with events
   if (typeof web3 !== 'undefined') {
     return new Web3(web3.currentProvider)
   }
