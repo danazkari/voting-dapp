@@ -56,7 +56,12 @@ MetaMask will give you a 12 word mnemonic which you'll need to save:
 
 ![MetaMask mnemonic][metamask-mnemonic]
 
-Copy those 12 words and put them in your `truffle.js` file:
+Copy them somewhere safe, seriously, they're important.
+
+Now you can go to [Infura.io] to get your API key by signing up.
+
+Put those 12 words in your `truffle.js` file:
+
 ```javascript
 var HDWalletProvider = require('truffle-hdwallet-provider');
 
@@ -85,6 +90,24 @@ module.exports = {
 };
 ```
 
+Then, on your MetaMask UI, select the `Ropsten` network:
+
+![Selecting Ropsten Network][metamask-ropsten-network]
+
+Last thing, go to the [MetaMask faucet] and request some ether for your account, you'll
+need it to deploy your contracts:
+
+![MetaMask faucet][metamask-faucet]
+
+And that's it! Now, let's deploy to Ropsten:
+
+```bash
+$ truffle compile
+$ truffle migrate --network ropsten
+```
+
+Done. You're now officially on Ropsten, now you only need your MetaMask pointing at Ropsten Network and you're good to go!
+
 ## What's next?
 
 Well, there's an [awesome Solidity guide] on YouTube, also there's a [best practices guide] for Smart Contracts
@@ -96,6 +119,10 @@ Should you have any questions, I invite you to open up issues.
 [MetaMask]: https://metamask.io
 [awesome Solidity guide]: https://www.youtube.com/watch?v=v_hU0jPtLto&list=PL16WqdAj66SCOdL6XIFbke-XQg2GW_Avg
 [best practices guide]: https://consensys.github.io/smart-contract-best-practices/
+[Infura.io]: https://infura.io/
+[MetaMask faucet]: https://faucet.metamask.io/
 
-[metamask-password]: http://res.cloudinary.com/danielpradogl/image/upload/c_scale,w_150/v1518022946/Screen_Shot_2018-02-07_at_11.01.58_AM_amv8i4.png
-[metamask-mnemonic]: http://res.cloudinary.com/danielpradogl/image/upload/c_scale,w_150/v1518023493/Screen_Shot_2018-02-07_at_11.05.50_AM_qwfvpv.png
+[metamask-password]: http://res.cloudinary.com/danielpradogl/image/upload/c_scale,w_300/v1518022946/Screen_Shot_2018-02-07_at_11.01.58_AM_amv8i4.png
+[metamask-mnemonic]: http://res.cloudinary.com/danielpradogl/image/upload/c_scale,w_300/v1518023493/Screen_Shot_2018-02-07_at_11.05.50_AM_qwfvpv.png
+[metamask-ropsten-network]: http://res.cloudinary.com/danielpradogl/image/upload/c_scale,w_300/v1518025740/Screen_Shot_2018-02-07_at_11.48.36_AM_fkjjho.png
+[metamask-faucet]: http://res.cloudinary.com/danielpradogl/image/upload/c_scale,h_214/v1518029297/faucet_i59i1w.png
