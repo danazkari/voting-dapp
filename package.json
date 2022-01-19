@@ -54,15 +54,15 @@
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.32",
     "material-ui-icons": "^1.0.0-beta.17",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
-    "truffle-hdwallet-provider": "0.0.3"
+    "truffle-hdwallet-provider": "1.0.0"
   },
   "scripts": {
     "start": "env-cmd ./.env node scripts/start.js",
